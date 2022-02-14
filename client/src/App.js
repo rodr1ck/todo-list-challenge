@@ -1,9 +1,7 @@
-import logo from "./logo.svg";
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Header from "./components/Header";
-import Listtareas from "./components/ListTareas";
 import Nuevatarea from "./components/Nuevatarea";
 import Details from "./views/Details";
 import Main from "./views/Main";

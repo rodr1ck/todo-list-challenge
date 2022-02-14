@@ -2,14 +2,12 @@ import { makeStyles } from "@material-ui/styles";
 import React, { useState } from "react";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
-import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import { Grid, Paper, TextField, Button } from "@material-ui/core";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import moment from "moment";
 import "moment/locale/es";
 import MaterialUIPickers from "./DatePicker.js";
-//import MaterialUIPickers from "./DatePicker";
 
 const useStyles = makeStyles({
   root: {
@@ -31,30 +29,15 @@ const Nuevatarea = () => {
     message: "",
     severity: "success",
   });
+
   const classes = useStyles();
-  let history = useHistory();
   const handleOpenAlert = (mensaje, tipo) => {
     setAlert({ open: true, message: mensaje, severity: tipo });
   };
 
-  const [openAlert, setOpenAlert] = useState(false);
-  const [mensaje_alerta, setMensaje_alerta] = useState();
-  const [titulo_alerta, setTitulo_alerta] = useState();
-
-  const today = new Date();
-  const dateInicial = moment().add(1,'days');
-  //const [fecha_inicial, setFecha_inicial] = useState(dateInicial);
- // const hoydia =
-  //  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-  //const fecha_inicial_01 = moment(fecha_inicial, "YYYY-MM-DD");
-  //const hoydia_01 = moment(hoydia, "YYYY-MM-DD");
-
-  const [tareaFecha, setTareaFecha] = useState(dateInicial);
+  const [tareaFecha, setTareaFecha] = useState(null);
   const [tareaDescripcion, setTareaDescripcion] = useState("");
   const [tareaResponsable, setTareaResponsable] = useState("");
-
-  const [errorsTareaFecha, setErrorsTareaFecha] = useState();
-  const [errorsTareaDescripcion, setErrorsTareaDescripcion] = useState();
   const [errorsTareaResponsable, setErrorsTareaResponsable] = useState();
 
   const paperStyle = {
@@ -63,38 +46,11 @@ const Nuevatarea = () => {
     margin: "20px auto",
   };
 
-
-
-  const handleTareaFechaChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setErrorsTareaFecha({ tareaFecha: "" });
-    setTareaFecha(value);
-
-    let reg = new RegExp(/\S+/).test(value);
-
-    if (!reg) {
-      setErrorsTareaFecha({
-        tareaFecha: "Formato de fecha incorrecto",
-      });
-    }
-  };
-
   const handleTareaDescripcionChange = (event) => {
     const {
       target: { value },
     } = event;
-    setErrorsTareaDescripcion({ tareaDescripcion: "" });
     setTareaDescripcion(value);
-
-    let reg = new RegExp(/\S+/).test(value);
-
-    if (!reg) {
-      setErrorsTareaDescripcion({
-        tareaDescripcion: "Formato de descripcion incorrecta",
-      });
-    }
   };
 
   const handleTareaResponsableChange = (event) => {
@@ -152,34 +108,6 @@ const Nuevatarea = () => {
               fecha={tareaFecha}
               setfecha={setTareaFecha}
             />
-
-{/*             <TextField
-              value={tareaFecha}
-              onChange={handleTareaFechaChange}
-              inputProps={{ maxLength: 80 }}
-              label="Fecha"
-              placeholder="Ingresar fecha"
-              type="text"
-              fullWidth
-              required
-              error={Boolean(errorsTareaFecha?.tareaFecha)}
-              helperText={errorsTareaFecha?.tareaFecha}
-            /> */}
-
-            {/*              <TextField
-              value={productoDescripcion}
-              onChange={handleProductoDescripcionChange}
-              inputProps={{ maxLength: 80 }}
-              label="Descripcion"
-              placeholder="Ingresar descripcion"
-              type="text"
-              fullWidth
-              maxRows={4}
-              required
-              error={Boolean(errorsProductoDescripcion?.productoDescripcion)}
-              helperText={errorsProductoDescripcion?.productoDescripcion}
-            />  */}
-
             <TextareaAutosize
               aria-label="minimum height"
               label="Descripcion"
@@ -188,10 +116,9 @@ const Nuevatarea = () => {
               maxRows={4}
               placeholder="Ingresar descripcion"
               maxLength={200}
-              style={{ width: 240, marginTop: "10px" }}
+              style={{ width: 240, marginTop: "15px" }}
               required
             />
-
             <TextField
               value={tareaResponsable}
               onChange={handleTareaResponsableChange}
@@ -204,7 +131,6 @@ const Nuevatarea = () => {
               error={Boolean(errorsTareaResponsable?.tareaResponsable)}
               helperText={errorsTareaResponsable?.tareaResponsable}
             />
-
             <Button
               type="submit"
               variant="contained"

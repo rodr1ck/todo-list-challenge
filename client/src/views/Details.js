@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import axios from "axios";
-import { useParams, Link, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 const Details = () => {
   let { id } = useParams();
@@ -14,11 +14,8 @@ const Details = () => {
 
   return (
     <>
-{/*       <Link className="adopt-link" to="/">
-        Volver al Home
-      </Link> */}
       <div className="adopdiv-style">
-        <h3 style={{ marginBottom: "40px" }}>
+        <h3 className="h3" style={{ marginBottom: "40px" }}>
           Estas seguro que deseas borrar la tarea?
         </h3>
         <button

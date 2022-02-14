@@ -16,10 +16,7 @@ const localeMap = {
 
 export default function MaterialUIPickers(props) {
   const [selectedDate, setSelectedDate] = React.useState(
-    moment(props.fecha)
-      .add(1, "days")
-      .utc()
-      .format("YYYY-MM-DD")
+    null
   );
   let tomorrow  = moment().add(1,'days');
   const [locale, setLocale] = useState("es");
@@ -39,9 +36,10 @@ export default function MaterialUIPickers(props) {
           minDate={tomorrow}
           label={props.leyenda}
           format="yyyy-MM-dd"
-          value={selectedDate}
+         value={selectedDate}
           onChange={handleDateChange}
           cancelLabel="Cancelar"
+          emptyLabel="Ingresar fecha" 
           KeyboardButtonProps={{
             "aria-label": "change date",
           }}
