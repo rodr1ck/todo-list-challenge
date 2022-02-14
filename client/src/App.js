@@ -9,42 +9,21 @@ import Details from "./views/Details";
 import Main from "./views/Main";
 
 function App() {
-  const [rows, setRows] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-/*   useEffect(() => {
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
-
-    fetch("/tarea", requestOptions)
-      .then((response) => response.text())
-      .then((result) => {
-        console.log(result);
-        setRows(result);
-        setLoading(false);
-      })
-      .catch((error) => console.log("error", error));
-  }, []); */
 
   return (
     <div className="App">
       <Router>
         <Header />
         <Switch>
-        <Route exact path="/tarea/:id">
-              <Details />
-            </Route>
-
-            <Route exact path="/">
-              <Main />
-            </Route>
-
-{/*           <Route exact path="/">
-          <Listtareas rows={rows} loading={loading} />
-          </Route> */}
-          <Route exact path="/creatarea" element={<Nuevatarea />} />
+          <Route exact path="/tarea/:id">
+            <Details />
+          </Route>
+          <Route exact path="/">
+            <Main />
+          </Route>
+          <Route exact path="/creatarea">
+            <Nuevatarea />
+          </Route>
         </Switch>
       </Router>
     </div>

@@ -1,0 +1,7 @@
+.MuiToolbar-root.MuiToolbar-regular.MuiPickersToolbar-toolbar.MuiPickersDatePickerRoot-toolbar.MuiToolbar-gutters {
+    background-color: #2f4554;
+}
+
+button.MuiButtonBase-root.MuiIconButton-root.MuiPickersDay-day.MuiPickersDay-daySelected {
+    background-color: #2f4554;
+}
